@@ -82,7 +82,8 @@
     <h1>Sell with ShopSphere - A Trusted Marketplace</h1>
     <h2>Shop Registration Form</h2>
     <p class="trust-badge">✔ 100% Secure | ✔ Verified Sellers | ✔ Trusted by Thousands</p>
-    <form onsubmit="return validateForm()">
+    <form onsubmit="return validateForm()"action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="14302638-0dcc-4a9d-bf8d-b8817009e310">
         <label for="productType">Type of Product:</label>
         <select id="productType" name="productType" required>
             <option value="">Select a product type</option>
