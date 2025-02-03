@@ -70,6 +70,22 @@
     <h2>Shop Registration Form</h2>
     <p class="trust-badge">✔ 100% Secure | ✔ Verified Sellers | ✔ Trusted by Thousands</p>
     <form onsubmit="return validateForm()">
+        <label for="productType">Type of Product:</label>
+        <select id="productType" name="productType" required>
+            <option value="">Select a product type</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Perfume and Cologne">Perfume and Cologne</option>
+            <option value="Books">Books</option>
+            <option value="Phone accessories">Phone accessories</option>
+            <option value="Baby Products">Baby Products</option>
+            <option value="Pet Products">Pet Products</option>
+            <option value="Body products">Body products</option>
+            <option value="Sportsware">Sportsware</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Boot">Boot</option>
+            <option value="Enable">Enable</option>
+            <option value="Hobbies and Craft">Hobbies and Craft</option>
+        </select>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
         
