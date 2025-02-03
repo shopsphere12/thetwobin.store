@@ -3,46 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Product Form</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ShopSphere - Trusted Seller Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            color: #007BFF;
+            font-weight: bold;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            border: 2px solid #007BFF;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 12px;
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .trust-badge {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h2>Seller Product Form</h2>
-    <form id="productForm">
-        <label>Product Name:</label>
-        <input type="text" id="productName" required>
+    <h1>Sell with ShopSphere - A Trusted Marketplace</h1>
+    <h2>Shop Registration Form</h2>
+    <p class="trust-badge">✔ 100% Secure | ✔ Verified Sellers | ✔ Trusted by Thousands</p>
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
         
-        <label>Description:</label>
-        <textarea id="description" required></textarea>
+        <label for="shop">Shop Name:</label>
+        <input type="text" id="shop" name="shop" required>
         
-        <label>Price ($):</label>
-        <input type="number" id="price" required>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
         
-        <label>Quantity:</label>
-        <input type="number" id="quantity" min="1" required>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" pattern="\d{10}" title="Phone number must be 10 digits" required>
         
-        <label>Seller Name:</label>
-        <input type="text" id="sellerName" required>
-        
-        <label>Seller Email:</label>
-        <input type="email" id="sellerEmail" required>
-        
-        <label>Product Images (3-5):</label>
-        <input type="file" id="images" multiple accept="image/*" required>
+        <label for="pan">PAN Number:</label>
+        <input type="text" id="pan" name="pan" pattern="\d{10}" title="PAN number must be 10 digits" required>
         
         <button type="submit">Submit</button>
     </form>
 
     <script>
-        document.getElementById('productForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let files = document.getElementById('images').files;
-            if (files.length < 3 || files.length > 5) {
-                alert('Please upload between 3 and 5 images.');
-                return;
+        function validateForm() {
+            let phone = document.getElementById("phone").value;
+            let pan = document.getElementById("pan").value;
+            
+            if (phone.length !== 10 || isNaN(phone)) {
+                alert("Phone number must be exactly 10 digits.");
+                return false;
             }
-            alert('Product submitted successfully!');
-        });
+            
+            if (pan.length !== 10 || isNaN(pan)) {
+                alert("PAN number must be exactly 10 digits.");
+                return false;
+            }
+            
+            return true;
+        }
     </script>
 </body>
 </html>
