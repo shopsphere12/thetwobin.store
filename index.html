@@ -114,7 +114,27 @@
         <label for="pan">PAN Number:</label>
         <input type="text" id="pan" name="pan" pattern="\d{10}" title="PAN number must be 10 digits" required>
         
-        <button type="submit">Submit</button>
+        <button type="submit"<a href="seller.html">Submit</button>
+        <label>Product Name:</label>
+        <input type="text" id="productName" required>
+        
+        <label>Description:</label>
+        <textarea id="description" required></textarea>
+        
+        <label>Price ($):</label>
+        <input type="number" id="price" required>
+        
+        <label>Quantity:</label>
+        <input type="number" id="quantity" min="1" required>
+        
+        <label>Seller Name:</label>
+        <input type="text" id="sellerName" required>
+        
+        <label>Seller Email:</label>
+        <input type="email" id="sellerEmail" required>
+        
+        <label>Product Images (3-5):</label>
+        <input type="file" id="images" multiple accept="image/*" required>
     </form>
 
     <script>
@@ -134,6 +154,15 @@
             
             return true;
         }
+         document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let files = document.getElementById('images').files;
+            if (files.length < 3 || files.length > 5) {
+                alert('Please upload between 3 and 5 images.');
+                return;
+            }
+            alert('Product submitted successfully!');
+        });
     </script>
 </body>
 </html>
