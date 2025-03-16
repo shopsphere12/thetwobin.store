@@ -3,6 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern OTP Verification</title>
-    <body></body>
+    <title>Login & Registration System</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="register-container">
+        <h2>Register</h2>
+        <input type="text" id="reg-username" placeholder="Username" required>
+        <input type="password" id="reg-password" placeholder="Password" required>
+        <button onclick="register()">Register</button>
+        <a href="#" onclick="showLogin()">Already have an account? Login</a>
+    </div>
+
+    <div class="container" id="login-container" style="display:none;">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <a href="#" onclick="showRegister()">Don't have an account? Register</a>
+    </div>
+
+    <div class="container" id="dashboard-container" style="display:none;">
+        <h2>Welcome, <span id="user-name"></span>!</h2>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        const registerContainer = document.getElementById('register-container');
+        const loginContainer = document.getElementById('login-container');
+        const dashboardContainer = document.getElementById('dashboard-container');
+        const userNameDisplay = document.getElementById('user-name');
+
+        function showLogin() {
+            registerContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        }
+
+        function showRegister() {
+            loginContainer.style.display = 'none';
+            registerContainer.style.display = 'block';
+        }
+
+        function register() {
+            const username = document.getElementById('reg-username').value;
+            const password = document.getElementById('reg-password').value;
+
+            if (username && password) {
+                localStorage.setItem('user', JSON.stringify({ username, password }));
+                alert('Registration Successful! Please log in.');
+                showLogin();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            if (user && user.username === username && user.password === password) {
+                userNameDisplay.textContent = username;
+                loginContainer.style.display = 'none';
+                dashboardContainer.style.display = 'block';
+            } else {
+                alert('Invalid username or password.');
+            }
+        }
+
+        function logout() {
+            dashboardContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        }
+    </script>
+</body>
 </html>
