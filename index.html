@@ -60,6 +60,16 @@
             background: #45a049;
         }
 
+        .back-btn {
+            margin-top: 10px;
+            padding: 10px;
+            background: #FF6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         a {
             display: block;
             margin-top: 10px;
@@ -69,6 +79,16 @@
 
         a:hover {
             text-decoration: underline;
+        }
+
+        .success-btn {
+            margin-top: 10px;
+            padding: 10px;
+            background: #32CD32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -85,6 +105,7 @@
             <i class="fa fa-eye toggle-password" onclick="togglePassword('reg-confirm-password', this)"></i>
         </div>
         <button onclick="register()">Register</button>
+        <button class="back-btn" onclick="goBack()">Back</button>
         <a href="#" onclick="showLogin()">Already have an account? Login</a>
     </div>
 
@@ -96,7 +117,13 @@
             <i class="fa fa-eye toggle-password" onclick="togglePassword('login-password', this)"></i>
         </div>
         <button onclick="login()">Login</button>
+        <button class="back-btn" onclick="goBack()">Back</button>
         <a href="#" onclick="showRegister()">Don't have an account? Register</a>
+    </div>
+
+    <div class="container" id="success-container" style="display:none;">
+        <h2>Welcome Admin</h2>
+        <button class="success-btn" onclick="goBack()">Go to Main Site</button>
     </div>
 
     <script>
@@ -126,15 +153,25 @@
             document.getElementById('register-container').style.display = 'block';
         }
 
+        function goBack() {
+            window.location.href = 'https://shopsphere12.github.io/shopsphere.in/';
+        }
+
         function register() {
             const email = document.getElementById('reg-email').value.trim();
             const password = document.getElementById('reg-password').value;
             const confirmPassword = document.getElementById('reg-confirm-password').value;
 
             const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+            const existingUser = JSON.parse(localStorage.getItem('user'));
 
             if (!email || !password || !confirmPassword) {
                 alert('Please fill in all fields.');
+                return;
+            }
+
+            if (existingUser && existingUser.email === email) {
+                alert('This email is already registered.');
                 return;
             }
 
@@ -157,15 +194,15 @@
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
 
+            const user = JSON.parse(localStorage.getItem('user'));
+
             if (email === adminEmail && password === adminPassword) {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('success-container').style.display = 'block';
+            } else if (user && user.email === email && user.password === password) {
                 window.location.href = 'https://shopsphere12.github.io/shopsphere.in/';
             } else {
-                const user = JSON.parse(localStorage.getItem('user'));
-                if (user && user.email === email && user.password === password) {
-                    window.location.href = 'https://shopsphere12.github.io/shopsphere.in/';
-                } else {
-                    alert('Invalid email or password.');
-                }
+                alert('Invalid email or password.');
             }
         }
     </script>
