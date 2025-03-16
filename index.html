@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Login & Registration System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -23,12 +24,25 @@
             text-align: center;
         }
 
+        .input-group {
+            position: relative;
+            margin: 10px 0;
+        }
+
         input {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 5px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
         }
 
         button {
@@ -62,8 +76,14 @@
     <div class="container" id="register-container">
         <h2>Register</h2>
         <input type="text" id="reg-username" placeholder="Username" required>
-        <input type="password" id="reg-password" placeholder="Password" required>
-        <input type="password" id="reg-confirm-password" placeholder="Confirm Password" required>
+        <div class="input-group">
+            <input type="password" id="reg-password" placeholder="Password" required>
+            <i class="fa fa-eye toggle-password" onclick="togglePassword('reg-password', this)"></i>
+        </div>
+        <div class="input-group">
+            <input type="password" id="reg-confirm-password" placeholder="Confirm Password" required>
+            <i class="fa fa-eye toggle-password" onclick="togglePassword('reg-confirm-password', this)"></i>
+        </div>
         <button onclick="register()">Register</button>
         <a href="#" onclick="showLogin()">Already have an account? Login</a>
     </div>
@@ -71,7 +91,10 @@
     <div class="container" id="login-container" style="display:none;">
         <h2>Login</h2>
         <input type="text" id="login-username" placeholder="Username" required>
-        <input type="password" id="login-password" placeholder="Password" required>
+        <div class="input-group">
+            <input type="password" id="login-password" placeholder="Password" required>
+            <i class="fa fa-eye toggle-password" onclick="togglePassword('login-password', this)"></i>
+        </div>
         <button onclick="login()">Login</button>
         <a href="#" onclick="showRegister()">Don't have an account? Register</a>
     </div>
@@ -86,6 +109,19 @@
         const loginContainer = document.getElementById('login-container');
         const dashboardContainer = document.getElementById('dashboard-container');
         const userNameDisplay = document.getElementById('user-name');
+
+        function togglePassword(id, element) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                element.classList.remove('fa-eye');
+                element.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                element.classList.remove('fa-eye-slash');
+                element.classList.add('fa-eye');
+            }
+        }
 
         function showLogin() {
             registerContainer.style.display = 'none';
