@@ -163,10 +163,16 @@
             const confirmPassword = document.getElementById('reg-confirm-password').value;
 
             const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+            const emailRegex = /^[\w-\.]+@gmail\.com$/;
             const existingUser = JSON.parse(localStorage.getItem('user'));
 
             if (!email || !password || !confirmPassword) {
                 alert('Please fill in all fields.');
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert('Email must be a valid @gmail.com address.');
                 return;
             }
 
