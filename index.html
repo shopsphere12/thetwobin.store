@@ -29,11 +29,16 @@
             margin: 10px 0;
         }
 
-        input {
+        input, select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
+        }
+
+        select {
+            max-height: 150px;
+            overflow-y: auto;
         }
 
         .toggle-password {
@@ -95,6 +100,16 @@
 <body>
     <div class="container" id="register-container">
         <h2>Register</h2>
+        <input type="text" id="reg-name" placeholder="Name" required>
+        <input type="text" id="reg-phone" placeholder="Phone Number" required>
+        <select id="reg-country" required size="5" onchange="this.size=1; this.blur();">
+            <option value="India">India</option>
+            <option value="United States">United States</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Australia">Australia</option>
+            <option value="Canada">Canada</option>
+            <!-- Add other countries as needed -->
+        </select>
         <input type="email" id="reg-email" placeholder="Email" required>
         <div class="input-group">
             <input type="password" id="reg-password" placeholder="Password" required>
@@ -109,56 +124,12 @@
         <a href="#" onclick="showLogin()">Already have an account? Login</a>
     </div>
 
-    <div class="container" id="login-container" style="display:none;">
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email" required>
-        <div class="input-group">
-            <input type="password" id="login-password" placeholder="Password" required>
-            <i class="fa fa-eye toggle-password" onclick="togglePassword('login-password', this)"></i>
-        </div>
-        <button onclick="login()">Login</button>
-        <button class="back-btn" onclick="goBack()">Back</button>
-        <a href="#" onclick="showRegister()">Don't have an account? Register</a>
-    </div>
-
-    <div class="container" id="success-container" style="display:none;">
-        <h2>Welcome Admin</h2>
-        <button class="success-btn" onclick="goBack()">Go to Main Site</button>
-    </div>
-
     <script>
-        const adminEmail = "shopsphere.vamshi@gmail.com";
-        const adminPassword = "vamshi333gowda";
-
-        function togglePassword(id, element) {
-            const input = document.getElementById(id);
-            if (input.type === 'password') {
-                input.type = 'text';
-                element.classList.remove('fa-eye');
-                element.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                element.classList.remove('fa-eye-slash');
-                element.classList.add('fa-eye');
-            }
-        }
-
-        function showLogin() {
-            document.getElementById('register-container').style.display = 'none';
-            document.getElementById('login-container').style.display = 'block';
-        }
-
-        function showRegister() {
-            document.getElementById('login-container').style.display = 'none';
-            document.getElementById('register-container').style.display = 'block';
-        }
-
-        function goBack() {
-            window.location.href = 'https://shopsphere12.github.io/shopsphere.in/';
-        }
-
         function register() {
+            const name = document.getElementById('reg-name').value.trim();
             const email = document.getElementById('reg-email').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            const country = document.getElementById('reg-country').value;
             const password = document.getElementById('reg-password').value;
             const confirmPassword = document.getElementById('reg-confirm-password').value;
 
@@ -166,7 +137,7 @@
             const emailRegex = /^[\w-\.]+@gmail\.com$/;
             const existingUser = JSON.parse(localStorage.getItem('user'));
 
-            if (!email || !password || !confirmPassword) {
+            if (!name || !email || !phone || !country || !password || !confirmPassword) {
                 alert('Please fill in all fields.');
                 return;
             }
@@ -191,25 +162,9 @@
                 return;
             }
 
-            localStorage.setItem('user', JSON.stringify({ email, password }));
+            localStorage.setItem('user', JSON.stringify({ name, email, phone, country, password }));
             alert('Registration Successful! Please log in.');
             showLogin();
-        }
-
-        function login() {
-            const email = document.getElementById('login-email').value.trim();
-            const password = document.getElementById('login-password').value;
-
-            const user = JSON.parse(localStorage.getItem('user'));
-
-            if (email === adminEmail && password === adminPassword) {
-                document.getElementById('login-container').style.display = 'none';
-                document.getElementById('success-container').style.display = 'block';
-            } else if (user && user.email === email && user.password === password) {
-                window.location.href = 'https://shopsphere12.github.io/shopsphere.in/';
-            } else {
-                alert('Invalid email or password.');
-            }
         }
     </script>
 </body>
