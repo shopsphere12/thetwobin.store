@@ -108,7 +108,6 @@
             <option value="United Kingdom">United Kingdom</option>
             <option value="Australia">Australia</option>
             <option value="Canada">Canada</option>
-            <!-- Add other countries as needed -->
         </select>
         <input type="email" id="reg-email" placeholder="Email" required>
         <div class="input-group">
@@ -165,6 +164,14 @@
             localStorage.setItem('user', JSON.stringify({ name, email, phone, country, password }));
             alert('Registration Successful! Please log in.');
             showLogin();
+        }
+
+        function togglePassword(inputId, toggleIcon) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            toggleIcon.classList.toggle('fa-eye');
+            toggleIcon.classList.toggle('fa-eye-slash');
         }
     </script>
 </body>
