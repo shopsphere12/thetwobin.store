@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Registration System</title>
+    <title>Secure Login & Registration System</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -63,6 +63,7 @@
         <h2>Register</h2>
         <input type="text" id="reg-username" placeholder="Username" required>
         <input type="password" id="reg-password" placeholder="Password" required>
+        <input type="password" id="reg-confirm-password" placeholder="Confirm Password" required>
         <button onclick="register()">Register</button>
         <a href="#" onclick="showLogin()">Already have an account? Login</a>
     </div>
@@ -97,20 +98,34 @@
         }
 
         function register() {
-            const username = document.getElementById('reg-username').value;
+            const username = document.getElementById('reg-username').value.trim();
             const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm-password').value;
 
-            if (username && password) {
-                localStorage.setItem('user', JSON.stringify({ username, password }));
-                alert('Registration Successful! Please log in.');
-                showLogin();
-            } else {
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+            if (!username || !password || !confirmPassword) {
                 alert('Please fill in all fields.');
+                return;
             }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            if (!passwordRegex.test(password)) {
+                alert('Password must be at least 6 characters long, contain at least one uppercase letter, and one number.');
+                return;
+            }
+
+            localStorage.setItem('user', JSON.stringify({ username, password }));
+            alert('Registration Successful! Please log in.');
+            showLogin();
         }
 
         function login() {
-            const username = document.getElementById('login-username').value;
+            const username = document.getElementById('login-username').value.trim();
             const password = document.getElementById('login-password').value;
             const user = JSON.parse(localStorage.getItem('user'));
 
