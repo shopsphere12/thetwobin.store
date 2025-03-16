@@ -75,7 +75,7 @@
 <body>
     <div class="container" id="register-container">
         <h2>Register</h2>
-        <input type="text" id="reg-username" placeholder="Username" required>
+        <input type="email" id="reg-email" placeholder="Email" required>
         <div class="input-group">
             <input type="password" id="reg-password" placeholder="Password" required>
             <i class="fa fa-eye toggle-password" onclick="togglePassword('reg-password', this)"></i>
@@ -90,7 +90,7 @@
 
     <div class="container" id="login-container" style="display:none;">
         <h2>Login</h2>
-        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="email" id="login-email" placeholder="Email" required>
         <div class="input-group">
             <input type="password" id="login-password" placeholder="Password" required>
             <i class="fa fa-eye toggle-password" onclick="togglePassword('login-password', this)"></i>
@@ -109,6 +109,9 @@
         const loginContainer = document.getElementById('login-container');
         const dashboardContainer = document.getElementById('dashboard-container');
         const userNameDisplay = document.getElementById('user-name');
+
+        const adminEmail = "shopsphere.vamshi@gmail.com";
+        const adminPassword = "vamshi333gowda";
 
         function togglePassword(id, element) {
             const input = document.getElementById(id);
@@ -134,13 +137,13 @@
         }
 
         function register() {
-            const username = document.getElementById('reg-username').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
             const password = document.getElementById('reg-password').value;
             const confirmPassword = document.getElementById('reg-confirm-password').value;
 
             const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
 
-            if (!username || !password || !confirmPassword) {
+            if (!email || !password || !confirmPassword) {
                 alert('Please fill in all fields.');
                 return;
             }
@@ -155,23 +158,29 @@
                 return;
             }
 
-            localStorage.setItem('user', JSON.stringify({ username, password }));
+            localStorage.setItem('user', JSON.stringify({ email, password }));
             alert('Registration Successful! Please log in.');
             showLogin();
         }
 
         function login() {
-            const username = document.getElementById('login-username').value.trim();
+            const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
-            const user = JSON.parse(localStorage.getItem('user'));
 
-            if (user && user.username === username && user.password === password) {
-                userNameDisplay.textContent = username;
-                loginContainer.style.display = 'none';
-                dashboardContainer.style.display = 'block';
+            if (email === adminEmail && password === adminPassword) {
+                userNameDisplay.textContent = 'Admin';
             } else {
-                alert('Invalid username or password.');
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (user && user.email === email && user.password === password) {
+                    userNameDisplay.textContent = email;
+                } else {
+                    alert('Invalid email or password.');
+                    return;
+                }
             }
+
+            loginContainer.style.display = 'none';
+            dashboardContainer.style.display = 'block';
         }
 
         function logout() {
