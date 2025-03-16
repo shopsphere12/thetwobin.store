@@ -99,17 +99,7 @@
         <a href="#" onclick="showRegister()">Don't have an account? Register</a>
     </div>
 
-    <div class="container" id="dashboard-container" style="display:none;">
-        <h2>Welcome, <span id="user-name"></span>!</h2>
-        <button onclick="logout()">Logout</button>
-    </div>
-
     <script>
-        const registerContainer = document.getElementById('register-container');
-        const loginContainer = document.getElementById('login-container');
-        const dashboardContainer = document.getElementById('dashboard-container');
-        const userNameDisplay = document.getElementById('user-name');
-
         const adminEmail = "shopsphere.vamshi@gmail.com";
         const adminPassword = "vamshi333gowda";
 
@@ -127,13 +117,13 @@
         }
 
         function showLogin() {
-            registerContainer.style.display = 'none';
-            loginContainer.style.display = 'block';
+            document.getElementById('register-container').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
         }
 
         function showRegister() {
-            loginContainer.style.display = 'none';
-            registerContainer.style.display = 'block';
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('register-container').style.display = 'block';
         }
 
         function register() {
@@ -168,24 +158,15 @@
             const password = document.getElementById('login-password').value;
 
             if (email === adminEmail && password === adminPassword) {
-                userNameDisplay.textContent = 'Admin';
+                window.location.href = 'https://shopsphere12.github.io/shopsphere.in/';
             } else {
                 const user = JSON.parse(localStorage.getItem('user'));
                 if (user && user.email === email && user.password === password) {
-                    userNameDisplay.textContent = email;
+                    window.location.href = 'https://shopsphere12.github.io/shopsphere.in/';
                 } else {
                     alert('Invalid email or password.');
-                    return;
                 }
             }
-
-            loginContainer.style.display = 'none';
-            dashboardContainer.style.display = 'block';
-        }
-
-        function logout() {
-            dashboardContainer.style.display = 'none';
-            loginContainer.style.display = 'block';
         }
     </script>
 </body>
