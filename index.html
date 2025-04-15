@@ -1,186 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Login & Registration|shopsphere|</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            width: 350px;
-            text-align: center;
-        }
-
-        .input-group {
-            position: relative;
-            margin: 10px 0;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        select {
-            max-height: 150px;
-            overflow-y: auto;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #888;
-        }
-
-        button {
-            padding: 12px;
-            width: 100%;
-            border: none;
-            background: #4CAF50;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #45a049;
-        }
-
-        .back-btn {
-            margin-top: 10px;
-            padding: 10px;
-            background: #FF6347;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        a {
-            display: block;
-            margin-top: 10px;
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .success-btn {
-            margin-top: 10px;
-            padding: 10px;
-            background: #32CD32;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+  <title>OTP Verification</title>
+  <style>
+    body { font-family: Arial; background: #eef; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #aaa; text-align: center; }
+    input, button { margin: 8px 0; padding: 10px; width: 80%; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #007bff; color: white; border: none; }
+  </style>
 </head>
 <body>
-    <div class="container" id="register-container">
-        <h2>Register</h2>
-        <input type="text" id="reg-name" placeholder="Name" required>
-        <input type="text" id="reg-phone" placeholder="Phone Number" required>
-        <select id="reg-country" required size="5" onchange="this.size=1; this.blur();">
-            <option value="India">India</option>
-            <option value="United States">United States</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Australia">Australia</option>
-            <option value="Canada">Canada</option>
-        </select>
-        <input type="email" id="reg-email" placeholder="Email" required>
-        <div class="input-group">
-            <input type="password" id="reg-password" placeholder="Password" required>
-            <i class="fa fa-eye toggle-password" onclick="togglePassword('reg-password', this)"></i>
-        </div>
-        <div class="input-group">
-            <input type="password" id="reg-confirm-password" placeholder="Confirm Password" required>
-            <i class="fa fa-eye toggle-password" onclick="togglePassword('reg-confirm-password', this)"></i>
-        </div>
-        <button onclick="register()">Register</button>
-        <button class="back-btn" onclick="goBack()">Back</button>
-        <a href="#" onclick="showLogin()">Already have an account? Login</a>
+  <div class="container">
+    <h2>Phone OTP Verification</h2>
+    <input id="phone" type="text" placeholder="+1234567890"><br>
+    <button onclick="sendOTP()">Send OTP</button>
+
+    <div id="otp-box" style="display:none;">
+      <input id="otp" type="text" placeholder="Enter OTP"><br>
+      <button onclick="verifyOTP()">Verify OTP</button>
     </div>
 
-    <script>
-        function register() {
-            const name = document.getElementById('reg-name').value.trim();
-            const email = document.getElementById('reg-email').value.trim();
-            const phone = document.getElementById('reg-phone').value.trim();
-            const country = document.getElementById('reg-country').value;
-            const password = document.getElementById('reg-password').value;
-            const confirmPassword = document.getElementById('reg-confirm-password').value;
+    <p id="result"></p>
+  </div>
 
-            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-            const emailRegex = /^[\w-\.]+@gmail\.com$/;
-            const existingUser = JSON.parse(localStorage.getItem('user'));
+  <script>
+    const backend = "https://your-backend.onrender.com"; // ← Replace with your real backend URL
 
-            if (!name || !email || !phone || !country || !password || !confirmPassword) {
-                alert('Please fill in all fields.');
-                return;
-            }
+    function sendOTP() {
+      const phone = document.getElementById('phone').value;
+      fetch(`${backend}/send-otp`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone })
+      }).then(res => res.json())
+        .then(data => {
+          document.getElementById('result').textContent = data.message;
+          if (data.success) document.getElementById('otp-box').style.display = 'block';
+        });
+    }
 
-            if (!emailRegex.test(email)) {
-                alert('Email must be a valid @gmail.com address.');
-                return;
-            }
-
-            if (existingUser && existingUser.email === email) {
-                alert('This email is already registered.');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match.');
-                return;
-            }
-
-            if (!passwordRegex.test(password)) {
-                alert('Password must be at least 6 characters long, contain at least one uppercase letter, and one number.');
-                return;
-            }
-
-            localStorage.setItem('user', JSON.stringify({ name, email, phone, country, password }));
-            alert('Registration Successful! Please log in.');
-            showLogin();
-        }
-
-        function togglePassword(inputId, toggleIcon) {
-            const passwordInput = document.getElementById(inputId);
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            toggleIcon.classList.toggle('fa-eye');
-            toggleIcon.classList.toggle('fa-eye-slash');
-        }
-
-        function showLogin() {
-            window.location.href = "login.html";
-        }
-
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+    function verifyOTP() {
+      const phone = document.getElementById('phone').value;
+      const otp = document.getElementById('otp').value;
+      fetch(`${backend}/verify-otp`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, otp })
+      }).then(res => res.json())
+        .then(data => {
+          document.getElementById('result').textContent = data.message;
+        });
+    }
+  </script>
 </body>
 </html>
