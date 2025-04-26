@@ -1,122 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopSphere</title>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopSphere | Eco Goods</title>
 </head>
 <body>
-    <!-- Navigation Bar -->
-<div class="topnav">
-    <a href="otpverification.html" class="btn">login</a>
+  <!-- Navigation Bar -->
+  <div class="topnav">
+    <a href="otpverification.html" class="btn">Login</a>
     <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Search...">
+      <input type="text" id="search-input" placeholder="Search eco-friendly products...">
       <button onclick="performSearch()">Search</button>
     </div>
   </div>
+
   <!-- Slideshow -->
-    <div class="slideshow-container">
+  <div class="slideshow-container">
     <div class="mySlides fade">
-        <a href="https://shopsphere12.github.io/shopsphere.in/glass.html">
-      <img src="51DAMyOtGhL._AC_UF1000,1000_QL80_.jpg" alt="Glass Bar Sink Automatic Washing Device">
-      <div class="text">Glass Bar Sink Automatic Washing Device</div></a>
+      <a href="https://shopsphere12.github.io/shopsphere.in/glass.html">
+        <img src="51DAMyOtGhL._AC_UF1000,1000_QL80_.jpg" alt="Eco Glass Bar Sink Washing Device">
+        <div class="text">Glass Bar Sink Automatic Washing Device</div>
+      </a>
     </div>
+
     <div class="mySlides fade">
-          <a href="https://shopsphere12.github.io/shopsphere.in/tappurifier.html">    
-      <img src="81R-kaBBlsL._SX466_.jpg" alt="Tap Filter Multilayer Clean Purifier">
-      <div class="text">Tap Filter Multilayer Clean Purifier Filter Cartridge</div></a>
+      <a href="https://shopsphere12.github.io/shopsphere.in/tappurifier.html">
+        <img src="81R-kaBBlsL._SX466_.jpg" alt="Sustainable Tap Filter Purifier">
+        <div class="text">Tap Filter Multilayer Clean Purifier</div>
+      </a>
     </div>
+
     <div class="mySlides fade">
-         <a href="https://shopsphere12.github.io/shopsphere.in/bottle.html">
-      <img src="shopping.webp" alt="USB Rechargeable Mini Juicer Blender">
-      <div class="text">USB Rechargeable Mini Juicer Blender</div></a>
+      <a href="https://shopsphere12.github.io/shopsphere.in/bottle.html">
+        <img src="shopping.webp" alt="Rechargeable Mini Juicer - Eco">
+        <div class="text">USB Rechargeable Mini Juicer Blender</div>
+      </a>
     </div>
-      <div class="mySlides fade">
-          <a href="https://shopsphere12.github.io/shopsphere.in/boatrockerz.html">
-      <img src="InShot_20250315_220748707[1].jpg" alt="boAt Rockerz 450">
-      <div class="text">boAt Rockerz 450</div></a>
+
+    <div class="mySlides fade">
+      <a href="https://shopsphere12.github.io/shopsphere.in/boatrockerz.html">
+        <img src="InShot_20250315_220748707[1].jpg" alt="Eco-friendly Headphones - boAt Rockerz">
+        <div class="text">boAt Rockerz 450</div>
+      </a>
     </div>
+
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
-  
+
   <!-- Product Cards -->
-    <!-- Product Cards -->
-<div class="card-container">
-  <div class="card">
-   <a href="https://shopsphere12.github.io/shopsphere.in/fan.html">   
-    <img src="SHOP SHPERE_files/Portable-Fan-Cooler-17-5-23-01.jpg" alt="Portable Fan Cooler"></a>
-    <div class="card-body">
-      <h5 class="card-title">Portable Fan Cooler</h5>
-      <p class="card-text">Smart and energy-efficient cooler providing fresh air at customized positions.</p>
+  <div class="card-container">
+    <div class="card">
+      <a href="https://shopsphere12.github.io/shopsphere.in/fan.html">
+        <img src="SHOP SHPERE_files/Portable-Fan-Cooler-17-5-23-01.jpg" alt="Energy-efficient Portable Fan">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">Portable Fan Cooler</h5>
+        <p class="card-text">Smart, low-power cooler providing fresh air responsibly.</p>
         <p>Price: <span class="old-price">₹999</span> <span class="new-price">₹699</span></p>
-      <button class="cart-btn" onclick="addToCart('Portable Fan Cooler', 699, 'SHOP SHPERE_files/Portable-Fan-Cooler-17-5-23-01.jpg')">Add to Cart</button>
+        <button class="cart-btn" onclick="addToCart('Portable Fan Cooler', 699, 'SHOP SHPERE_files/Portable-Fan-Cooler-17-5-23-01.jpg')">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <a href="https://shopsphere12.github.io/shopsphere.in/bottle.html">
+        <img src="shopping.webp" alt="Eco-friendly USB Juicer">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">USB Rechargeable Mini Juicer</h5>
+        <p class="card-text">Portable juicer bottle for healthy smoothies on the go.</p>
+        <p>Price: <span class="old-price">₹639</span> <span class="new-price">₹499</span></p>
+        <button class="cart-btn" onclick="addToCart('USB Rechargeable Mini Juicer', 499, 'shopping.webp')">Add to Cart</button>
+      </div>
     </div>
   </div>
 
-  <div class="card">
-  <a href="https://shopsphere12.github.io/shopsphere.in/bottle.html">    
-    <img src="shopping.webp" alt="USB Rechargeable Mini Juicer"></a>
-    <div class="card-body">
-      <h5 class="card-title">USB Rechargeable Mini Juicer</h5>
-      <p class="card-text">Portable electric juicer bottle for juices, shakes, and smoothies.</p>
-        <p>Price: <span class="old-price">₹639</span> <span class="new-price">₹499</span></p>
-      <button class="cart-btn" onclick="addToCart('USB Rechargeable Mini Juicer', 499, 'shopping.webp')">Add to Cart</button>
-    </div>
-  </div> 
-</div>    
-    <!-- Footer -->
+  <!-- Footer -->
   <footer>
     <p>&copy; 2024 ShopSphere. All Rights Reserved.</p>
-    <p><a href="https://shopsphere12.github.io/shopsphere.in/shopshpere_HTML_FILES/contact.html">contact Shopsphere.in</a></p>
-    <p>&copy;<a href="termandcondtton.html">Term And Condtton</a></p>
+    <p><a href="https://shopsphere12.github.io/shopsphere.in/shopshpere_HTML_FILES/contact.html">Contact ShopSphere.in</a></p>
+    <p><a href="termandcondtton.html">Terms and Conditions</a></p>
   </footer>
-    <script>
-  let slideIndex = 1;
-  showSlides(slideIndex);
 
-  // Function to move to the next or previous slide
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
+  <!-- Script -->
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
 
-  // Function to show the current slide
-  function showSlides(n) {
-    const slides = document.getElementsByClassName("mySlides");
-
-    if (n > slides.length) { slideIndex = 1; }
-    if (n < 1) { slideIndex = slides.length; }
-
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
     }
 
-    slides[slideIndex - 1].style.display = "block";
-  }
-
-  // Auto-slide functionality
-  let autoSlideIndex = 0;
-  function autoShowSlides() {
-    const slides = document.getElementsByClassName("mySlides");
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+    function showSlides(n) {
+      const slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) { slideIndex = 1; }
+      if (n < 1) { slideIndex = slides.length; }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex - 1].style.display = "block";
     }
-    autoSlideIndex++;
-    if (autoSlideIndex > slides.length) { autoSlideIndex = 1; }
-    slides[autoSlideIndex - 1].style.display = "block";
-    setTimeout(autoShowSlides, 3000); // Change slide every 3 seconds
-  }
 
-  autoShowSlides();
-        
-function performSearch() {
-    let query = document.getElementById("search-input").value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
-    let slideshow = document.querySelector(".slideshow-container");
-  
-</script>
+    let autoSlideIndex = 0;
+    function autoShowSlides() {
+      const slides = document.getElementsByClassName("mySlides");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      autoSlideIndex++;
+      if (autoSlideIndex > slides.length) { autoSlideIndex = 1; }
+      slides[autoSlideIndex - 1].style.display = "block";
+      setTimeout(autoShowSlides, 3000);
+    }
+    autoShowSlides();
 
+    function performSearch() {
+      let query = document.getElementById("search-input").value.toLowerCase();
+      let cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        const title = card.querySelector(".card-title").innerText.toLowerCase();
+        card.style.display = title.includes(query) ? "block" : "none";
+      });
+    }
   </script>
-  </body>
-  </html>
+</body>
+</html>
