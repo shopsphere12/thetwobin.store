@@ -1,56 +1,203 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>OTP Verification</title>
-  <style>
-    body { font-family: Arial; background: #eef; display: flex; justify-content: center; align-items: center; height: 100vh; }
-    .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #aaa; text-align: center; }
-    input, button { margin: 8px 0; padding: 10px; width: 80%; border-radius: 5px; border: 1px solid #ccc; }
-    button { background: #007bff; color: white; border: none; }
-  </style>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSphere</title>
 </head>
 <body>
-  <div class="container">
-    <h2>Phone OTP Verification</h2>
-    <input id="phone" type="text" placeholder="+1234567890"><br>
-    <button onclick="sendOTP()">Send OTP</button>
-
-    <div id="otp-box" style="display:none;">
-      <input id="otp" type="text" placeholder="Enter OTP"><br>
-      <button onclick="verifyOTP()">Verify OTP</button>
+    <!-- Navigation Bar -->
+<div class="topnav">
+    <a href="otpverification.html" class="btn">login</a>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
     </div>
-
-    <p id="result"></p>
+  </div>
+  <!-- Slideshow -->
+    <div class="slideshow-container">
+    <div class="mySlides fade">
+        <a href="https://shopsphere12.github.io/shopsphere.in/glass.html">
+      <img src="51DAMyOtGhL._AC_UF1000,1000_QL80_.jpg" alt="Glass Bar Sink Automatic Washing Device">
+      <div class="text">Glass Bar Sink Automatic Washing Device</div></a>
+    </div>
+    <div class="mySlides fade">
+          <a href="https://shopsphere12.github.io/shopsphere.in/tappurifier.html">    
+      <img src="81R-kaBBlsL._SX466_.jpg" alt="Tap Filter Multilayer Clean Purifier">
+      <div class="text">Tap Filter Multilayer Clean Purifier Filter Cartridge</div></a>
+    </div>
+    <div class="mySlides fade">
+         <a href="https://shopsphere12.github.io/shopsphere.in/bottle.html">
+      <img src="shopping.webp" alt="USB Rechargeable Mini Juicer Blender">
+      <div class="text">USB Rechargeable Mini Juicer Blender</div></a>
+    </div>
+      <div class="mySlides fade">
+          <a href="https://shopsphere12.github.io/shopsphere.in/boatrockerz.html">
+      <img src="InShot_20250315_220748707[1].jpg" alt="boAt Rockerz 450">
+      <div class="text">boAt Rockerz 450</div></a>
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  
+  <!-- Product Cards -->
+    <!-- Product Cards -->
+<div class="card-container">
+  <div class="card">
+   <a href="https://shopsphere12.github.io/shopsphere.in/fan.html">   
+    <img src="SHOP SHPERE_files/Portable-Fan-Cooler-17-5-23-01.jpg" alt="Portable Fan Cooler"></a>
+    <div class="card-body">
+      <h5 class="card-title">Portable Fan Cooler</h5>
+      <p class="card-text">Smart and energy-efficient cooler providing fresh air at customized positions.</p>
+        <p>Price: <span class="old-price">₹999</span> <span class="new-price">₹699</span></p>
+      <button class="cart-btn" onclick="addToCart('Portable Fan Cooler', 699, 'SHOP SHPERE_files/Portable-Fan-Cooler-17-5-23-01.jpg')">Add to Cart</button>
+    </div>
   </div>
 
-  <script>
-    const backend = "https://shopsphere-otp-backend.onrender.com"; // ← Replace with your real backend URL
+  <div class="card">
+  <a href="https://shopsphere12.github.io/shopsphere.in/bottle.html">    
+    <img src="shopping.webp" alt="USB Rechargeable Mini Juicer"></a>
+    <div class="card-body">
+      <h5 class="card-title">USB Rechargeable Mini Juicer</h5>
+      <p class="card-text">Portable electric juicer bottle for juices, shakes, and smoothies.</p>
+        <p>Price: <span class="old-price">₹639</span> <span class="new-price">₹499</span></p>
+      <button class="cart-btn" onclick="addToCart('USB Rechargeable Mini Juicer', 499, 'shopping.webp')">Add to Cart</button>
+    </div>
+  </div>
 
-    function sendOTP() {
-      const phone = document.getElementById('phone').value;
-      fetch(`${backend}/send-otp`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone })
-      }).then(res => res.json())
-        .then(data => {
-          document.getElementById('result').textContent = data.message;
-          if (data.success) document.getElementById('otp-box').style.display = 'block';
-        });
+  <div class="card">
+      <a href="https://shopsphere12.github.io/shopsphere.in/glass.html">
+    <img src="51DAMyOtGhL._AC_UF1000,1000_QL80_.jpg" alt="Glass Rinser For Kitchen Sink"></a>
+    <div class="card-body">
+      <h5 class="card-title">Glass Rinser For Kitchen Sink</h5>
+      <p class="card-text">Accessories for cleaning bottles, cups, and glasses efficiently.</p>
+        <p>Price: <span class="old-price">₹500</span> <span class="new-price">₹399</span></p>
+         <button class="cart-btn" onclick="addToCart('Glass Rinser For Kitchen Sink',399, '51DAMyOtGhL._AC_UF1000,1000_QL80_.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+  <a href="https://shopsphere12.github.io/shopsphere.in/tappurifier.html">    
+    <img src="81R-kaBBlsL._SX466_.jpg" alt="Tap Filter"></a>
+    <div class="card-body">
+      <h5 class="card-title">Tap Filter</h5>
+      <p class="card-text">Activated carbon faucet water filters for cleaner tap water.</p>
+        <p>Price: <span class="old-price">₹399</span> <span class="new-price">₹199</span></p>
+     <button class="cart-btn" onclick="addToCart('Tap Filter',199, '81R-kaBBlsL._SX466_.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <a href="https://shopsphere12.github.io/shopsphere.in/minifan.html">
+    <img src="816lZp-8R2L.jpg" alt="Bajaj Pygmy Mini Fan 110mm"></a>
+    <div class="card-body">
+      <h5 class="card-title">Bajaj Pygmy Mini Fan 110mm</h5>
+      <p class="card-text">USB Charging Fan | Multi-Clip Function | Rechargeable Fan | Battery Fan | 4-Hr Back-up</p>
+        <p>Price: <span class="old-price">₹1800</span> <span class="new-price">₹1299</span></p>
+      <button class="cart-btn" onclick="addToCart('Bajaj Pygmy Mini Fan 110mm', 1299, '816lZp-8R2L.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+    <div class="card">
+    <a href="https://shopsphere12.github.io/shopsphere.in/boatrockerz.html">
+        <img src="51FNnHjzhQL._SY450_.jpg" alt="boAt Rockerz 450"></a>
+    <div class="card-body">
+        <h5 class="card-title">boAt Rockerz 450</h5>
+        <p class="card-text">boAt Rockerz 450, 15 HRS Battery, 40mm Drivers, Padded Ear Cushions, Integrated Controls, Dual Modes.</p>
+        <p>Price: <span class="old-price">₹2599</span> <span class="new-price">₹1599</span></p>
+        <button class="cart-btn" onclick="addToCart('boAt Rockerz 450', 1599, '51FNnHjzhQL._SY450_.jpg')">Add to Cart</button>
+    </div>
+</div>
+    
+  <div class="card">
+    <a href="https://shopsphere12.github.io/shopsphere.in/oneplusnordbuds2r.html">
+        <img src="51raakZN9fL._AC_UF1000,1000_QL80_.jpg" alt="OnePlus Nord Buds 2r"></a>
+    <div class="card-body">
+        <h5 class="card-title">OnePlus Nord Buds 2r</h5>
+        <p class="card-text">OnePlus Nord Buds 2r True Wireless in Ear Earbuds with Mic, 12.4mm Drivers, Playback:Upto 38hr case,4-Mic Design, IP55 Rating [ Misty Grey ].</p>
+        <p>Price: <span class="old-price">₹2999</span> <span class="new-price">₹1799</span></p>
+        <button class="cart-btn" onclick="addToCart('OnePlus Nord Buds 2r', 1899, '51raakZN9fL._AC_UF1000,1000_QL80_.jpg')">Add to Cart</button>
+    </div>
+</div> 
+    
+    <div class="card">
+    <a href="https://shopsphere12.github.io/shopsphere.in/noisetwobluetoothheadphones.html">
+        <img src="download(2).jpeg" alt="Noise Two Bluetooth Headphones"></a>
+    <div class="card-body">
+        <h5 class="card-title">Noise Two Bluetooth Headphones</h5>
+        <p class="card-text">Noise Two Bluetooth Headphones, Upto 50 Hours of Playtime, Dual Pairing, Bluetooth v5.3, 4 Play Modes, Type-C Charging, Lightweight Design, Serene Blue</p>
+        <p>Price: <span class="old-price">₹3199</span> <span class="new-price">₹1899</span></p>
+        <button class="cart-btn" onclick="addToCart('Noise Two Bluetooth Headphones', 1899, 'download(2).jpeg')">Add to Cart</button>
+    </div>
+</div>
+
+    <div class="card">
+    <a href="https://shopsphere12.github.io/shopsphere.in/boatairdopes131pro.html">
+        <img src="shopping(2).webp" alt="boAt Airdopes 131 Pro Buds "></a>
+    <div class="card-body">
+        <h5 class="card-title">boAt Airdopes 131 Pro Buds </h5>
+        <p class="card-text">boAt Airdopes 131 Pro Buds w/ In Ear Detection, 4 Mics ENx Tech & 40 HRS Playback Bluetooth  (Coco Brown, True Wireless)</p>
+        <p>Price: <span class="old-price">₹1999</span> <span class="new-price">₹1099</span></p>
+        <button class="cart-btn" onclick="addToCart('boAt Airdopes 131 Pro Buds ', 1099, 'shopping(2).webp')">Add to Cart</button>
+    </div>
+</div>
+</div>    
+    
+
+
+    
+    <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 ShopSphere. All Rights Reserved.</p>
+    <p><a href="https://shopsphere12.github.io/shopsphere.in/shopshpere_HTML_FILES/contact.html">contact Shopsphere.in</a></p>
+    <p>&copy;<a href="termandcondtton.html">Term And Condtton</a></p>
+  </footer>
+    <script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  // Function to move to the next or previous slide
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  // Function to show the current slide
+  function showSlides(n) {
+    const slides = document.getElementsByClassName("mySlides");
+
+    if (n > slides.length) { slideIndex = 1; }
+    if (n < 1) { slideIndex = slides.length; }
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
     }
 
-    function verifyOTP() {
-      const phone = document.getElementById('phone').value;
-      const otp = document.getElementById('otp').value;
-      fetch(`${backend}/verify-otp`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, otp })
-      }).then(res => res.json())
-        .then(data => {
-          document.getElementById('result').textContent = data.message;
-        });
+    slides[slideIndex - 1].style.display = "block";
+  }
+
+  // Auto-slide functionality
+  let autoSlideIndex = 0;
+  function autoShowSlides() {
+    const slides = document.getElementsByClassName("mySlides");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
     }
+    autoSlideIndex++;
+    if (autoSlideIndex > slides.length) { autoSlideIndex = 1; }
+    slides[autoSlideIndex - 1].style.display = "block";
+    setTimeout(autoShowSlides, 3000); // Change slide every 3 seconds
+  }
+
+  autoShowSlides();
+        
+function performSearch() {
+    let query = document.getElementById("search-input").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+    let slideshow = document.querySelector(".slideshow-container");
+  
+</script>
+
   </script>
-</body>
-</html>
+  </body>
+  </html>
