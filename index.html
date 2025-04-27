@@ -203,21 +203,6 @@ footer a.footer-link:hover {
 
   </style>
 </head>
-  
-  <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {threshold: 0.2});
-
-  document.querySelectorAll('.container').forEach(section => {
-    observer.observe(section);
-  });
-</script>
-
 <body>
 
 <header>
@@ -290,6 +275,18 @@ footer a.footer-link:hover {
   }
 
   setInterval(showNextImage, 3000); // 3 seconds for next image
+
+   const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.2});
+
+  document.querySelectorAll('.container').forEach(section => {
+    observer.observe(section);
+  });
 </script>
 
 </body>
