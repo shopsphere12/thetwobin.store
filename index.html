@@ -141,9 +141,83 @@
   color: lightgray;
 }
 
+          /* New Animations */
+@keyframes zoomIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(0, 114, 255, 0.7); }
+  50% { box-shadow: 0 0 20px rgba(0, 114, 255, 0.7); }
+  100% { box-shadow: 0 0 0 rgba(0, 114, 255, 0.7); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+/* Apply Animations */
+.feature, .card {
+  animation: zoomIn 1s ease forwards;
+}
+
+.carousel {
+  animation: pulse 3s infinite;
+}
+
+.buy-button {
+  animation: bounce 2s infinite;
+  transition: transform 0.4s;
+}
+
+.buy-button:hover {
+  transform: scale(1.1);
+}
+
+footer a.footer-link {
+  transition: color 0.3s, transform 0.3s;
+}
+
+footer a.footer-link:hover {
+  transform: scale(1.1);
+}
+
+/* Smooth Fade-up on Scroll */
+.container h2, .container p, .feature, .card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.container.visible h2, 
+.container.visible p, 
+.container.visible .feature, 
+.container.visible .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
   </style>
 </head>
+  
+  <script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.2});
+
+  document.querySelectorAll('.container').forEach(section => {
+    observer.observe(section);
+  });
+</script>
+
 <body>
 
 <header>
