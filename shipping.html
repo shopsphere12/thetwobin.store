@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shipping Details - TwoBins</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(#e0f7fa, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .form-container {
+      background: white;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      animation: fadeIn 1.5s;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      margin-top: 0.5rem;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #1e88e5;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 12px;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.4s;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+    }
+
+    footer {
+      background: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TwoBins - Shipping Details</h1>
+</header>
+
+<div class="form-container">
+  <h2>Enter Your Shipping Information</h2>
+<form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="c94e5c76-29b0-4f2c-9f1e-c0112cc7330f">
+    <input type="text" name="name" placeholder="name" required>
+    <input type="email" name="email" placeholder="email" required>
+    <input  type="number" name="phonenumber" placeholder="phonenumber" required>
+    <textarea type="text" name="shippingaddress" placeholder="shippingaddress" required></textarea>
+    <input type="text" name="landmark" placeholder="Landmark" required>
+    <input type="text" name="Country-Region" placeholder="Country" required>
+    <input type="number" name="Pincode" placeholder="Pincode" required>
+    <input type="text" name="state" placeholder="State" required>
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    <input type="hidden" name="redirect" value="">
+    <button type="submit">Submit Form</button>
+
+</form>
+</div>
+
+<footer>
+  <p>© 2025 TwoBins | Designed by Vamshi V Gowda</p>
+</footer>
+
+</body>
+</html>
