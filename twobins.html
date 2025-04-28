@@ -153,6 +153,32 @@
                 max-width: 90%;
             }
         }
+
+.buy-button {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.4s;
+    }
+
+    .buy-button:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+    }
+
+.buy-button {
+  animation: bounce 2s infinite;
+  transition: transform 0.4s;
+}
+
+.buy-button:hover {
+  transform: scale(1.1);
+}
+        
     </style>
 </head>
 <body>
@@ -182,7 +208,7 @@
             TwoBins is your companion for a cleaner ride. A stylish, compact waste bin that fits on any bike or scooter, separates wet and dry waste, and helps keep India's roads clean.
         </p>
         <p class="shipping">+₹61 Shipping</p>
-        <button><a href="shipping.html">Buy now</a></button>
+         <a href="twobins.html" class="buy-button">Buy Now</a>
     </div>
 </div>
 
