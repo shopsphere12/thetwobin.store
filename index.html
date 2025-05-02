@@ -199,7 +199,21 @@ footer a.footer-link:hover {
   opacity: 1;
   transform: translateY(0);
 }
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
 
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
   </style>
 </head>
@@ -246,6 +260,13 @@ footer a.footer-link:hover {
       <p>Can be used to store items.</p>
     </div>
   </div>
+
+  <div class="video-container">
+  <iframe src="https://youtu.be/IsbW0MStv9Y?si=O-cT0btMEI2rdx9T" 
+          frameborder="0" 
+          allowfullscreen>
+  </iframe>
+</div>
 
   <h2>Grab Yours!</h2>
   <div class="card-container">
